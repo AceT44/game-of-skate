@@ -31,6 +31,7 @@ class UI:
         self.window.geometry("1000x600")
         self.window.title("SKATE")
         self.window.config(bg="white")
+        self.window.resizable(False, False)
 
         self.rps = RockPaperScissors()
         self.game = Game(self)
@@ -100,9 +101,9 @@ class UI:
                 "1. Flat-ground only\n\n"
                 "2. Rock paper scissors decides who sets the first trick\n\n"
                 "3. The setter chooses a trick that the defender must replicate if landed\n\n"
-                "4. If the defender bails, a letter is given until SKATE is spelled out\n\n"
+                "4. If the defender bails, a letter is given until 'SKATE' is spelled out\n\n"
                 "5. If the setter bails, the next player becomes the setter\n\n"
-                "6. The first player to spell out SKATE loses\n\n"
+                "6. The first player to spell out 'SKATE' loses\n\n"
                 "7. Two attempts to replicate the trick are given on the defender's last letter"
             ),
             font=("Arial", 12),
@@ -231,7 +232,7 @@ class UI:
 
         self.player_letters_label = tk.Label(
             self.skate_frame,
-            text=f"PLAYER'S LETTERS\n{self.game.player_letters}",
+            text="PLAYER'S LETTERS:\n",
             font=("Arial", 20),
             bg="white",
             fg="black"
@@ -240,7 +241,7 @@ class UI:
 
         self.bot_letters_label = tk.Label(
             self.skate_frame,
-            text=f"BOT'S LETTERS\n{self.game.bot_letters}",
+            text="BOT'S LETTERS:\n",
             font=("Arial", 20),
             bg="white",
             fg="black"
@@ -257,7 +258,7 @@ class UI:
 
         self.tricks_list_label = tk.Label(
             self.skate_frame,
-            text="ENTER A TRICK",
+            text="ENTER A TRICK:",
             font=("Arial", 16),
             bg="white",
             fg="black"
@@ -515,7 +516,7 @@ class Game:
             self.bot_letters.append(self.WORD[len(self.bot_letters)])
 
             self.ui.bot_letters_label.config(
-                text=f"BOT'S LETTERS\n{self.bot_letters}"
+                text=f"BOT'S LETTERS:\n{' '.join(self.bot_letters)}"
             )
 
         self.player_sets()
@@ -545,7 +546,7 @@ class Game:
             self.player_letters.append(self.WORD[len(self.player_letters)])
 
             self.ui.player_letters_label.config(
-                text=f"PLAYER'S LETTERS\n{self.player_letters}"
+                text=f"PLAYER'S LETTERS:\n{' '.join(self.player_letters)}"
             )
 
             self.bot_sets()
